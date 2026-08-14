@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +20,7 @@
             background: white;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            box-shadow: 0 0 10px gray;
         }
 
         h2 {
@@ -38,8 +39,6 @@
         input, select, textarea {
             width: 100%;
             padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
             box-sizing: border-box;
         }
 
@@ -50,24 +49,18 @@
         input[type="submit"],
         input[type="reset"] {
             width: 48%;
-            background-color: #007BFF;
+            padding: 10px;
             color: white;
             border: none;
             cursor: pointer;
-            padding: 10px;
-            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
         }
 
         input[type="reset"] {
             background-color: #dc3545;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-
-        input[type="reset"]:hover {
-            background-color: #c82333;
         }
     </style>
 </head>
@@ -85,36 +78,35 @@
             <tr>
                 <td>Full Name</td>
                 <td>
-                    <input type="text" id="fullname" name="fullname" required>
+                    <input type="text" id="fullname" required>
                 </td>
             </tr>
 
             <tr>
                 <td>Father's Name</td>
                 <td>
-                    <input type="text" id="fathername" name="fathername" required>
+                    <input type="text" id="fathername" required>
                 </td>
             </tr>
 
             <tr>
                 <td>Email</td>
                 <td>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" required>
                 </td>
             </tr>
 
             <tr>
                 <td>Phone Number</td>
                 <td>
-                    <input type="tel" id="phone" name="phone"
-                           pattern="[0-9]{10}" required>
+                    <input type="tel" id="phone" required>
                 </td>
             </tr>
 
             <tr>
                 <td>Date of Birth</td>
                 <td>
-                    <input type="date" id="dob" name="dob" required>
+                    <input type="date" id="dob" required>
                 </td>
             </tr>
 
@@ -122,9 +114,7 @@
                 <td>Gender</td>
                 <td>
                     <input type="radio" name="gender" value="Male" required> Male
-
                     <input type="radio" name="gender" value="Female"> Female
-
                     <input type="radio" name="gender" value="Other"> Other
                 </td>
             </tr>
@@ -132,14 +122,14 @@
             <tr>
                 <td>Course</td>
                 <td>
-                    <select id="course" name="course" required>
+                    <select id="course" required>
                         <option value="">--Select Course--</option>
-                        <option value="AIML">AIML</option>
-                        <option value="CSE">CSE</option>
-                        <option value="ELECTRICAL">ELECTRICAL</option>
-                        <option value="ETC">ETC</option>
-                        <option value="MECHANICAL">MECHANICAL</option>
-                        <option value="ITI">ITI</option>
+                        <option>AIML</option>
+                        <option>CSE</option>
+                        <option>ELECTRICAL</option>
+                        <option>ETC</option>
+                        <option>MECHANICAL</option>
+                        <option>ITI</option>
                     </select>
                 </td>
             </tr>
@@ -147,24 +137,21 @@
             <tr>
                 <td>Address</td>
                 <td>
-                    <textarea id="address" name="address"
-                              rows="4" required></textarea>
+                    <textarea id="address" rows="4" required></textarea>
                 </td>
             </tr>
 
             <tr>
                 <td>Password</td>
                 <td>
-                    <input type="password" id="password"
-                           name="password" required>
+                    <input type="password" id="password" required>
                 </td>
             </tr>
 
             <tr>
                 <td>Confirm Password</td>
                 <td>
-                    <input type="password" id="confirm_password"
-                           name="confirm_password" required>
+                    <input type="password" id="confirm_password" required>
                 </td>
             </tr>
 
@@ -180,163 +167,124 @@
     </form>
 </div>
 
-
 <script>
 
-   
-    function validateForm() {
+function validateForm() {
 
-       
-        let fullname = document.getElementById("fullname").value.trim();
-        let fathername = document.getElementById("fathername").value.trim();
-        let email = document.getElementById("email").value.trim();
-        let phone = document.getElementById("phone").value.trim();
-        let dob = document.getElementById("dob").value;
-        let course = document.getElementById("course").value;
-        let address = document.getElementById("address").value.trim();
-        let password = document.getElementById("password").value;
-        let confirmPassword =
-            document.getElementById("confirm_password").value;
+    let fullname = document.getElementById("fullname").value;
+    let fathername = document.getElementById("fathername").value;
+    let email = document.getElementById("email").value;
+    let phone = document.getElementById("phone").value;
+    let dob = document.getElementById("dob").value;
+    let course = document.getElementById("course").value;
+    let address = document.getElementById("address").value;
+    let password = document.getElementById("password").value;
+    let confirmPassword = document.getElementById("confirm_password").value;
 
 
-        
-        let namePattern = /^[A-Za-z ]+$/;
+    
+    let namePattern = /^[A-Za-z ]+$/;
 
-        if (fullname === "") {
-            alert("Please enter your Full Name.");
-            return false;
-        }
+    if (!namePattern.test(fullname)) {
+        alert("Enter a valid Full Name");
+        return false;
+    }
 
-        if (!namePattern.test(fullname)) {
-            alert("Full Name should contain only alphabets.");
-            return false;
-        }
-
-
-       
-        if (fathername === "") {
-            alert("Please enter Father's Name.");
-            return false;
-        }
-
-        if (!namePattern.test(fathername)) {
-            alert("Father's Name should contain only alphabets.");
-            return false;
-        }
-
-
-        
-        let emailPattern =
-            /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-
-        if (email === "") {
-            alert("Please enter your Email.");
-            return false;
-        }
-
-        if (!emailPattern.test(email)) {
-            alert("Please enter a valid Email address.");
-            return false;
-        }
-
-
-       
-        let phonePattern = /^[0-9]{10}$/;
-
-        if (phone === "") {
-            alert("Please enter your Phone Number.");
-            return false;
-        }
-
-        if (!phonePattern.test(phone)) {
-            alert("Phone Number must contain exactly 10 digits.");
-            return false;
-        }
-
-
-        
-        if (dob === "") {
-            alert("Please select your Date of Birth.");
-            return false;
-        }
-
-        let today = new Date();
-        let birthDate = new Date(dob);
-
-        if (birthDate > today) {
-            alert("Date of Birth cannot be a future date.");
-            return false;
-        }
-
-
-     
-        let gender =
-            document.querySelector('input[name="gender"]:checked');
-
-        if (!gender) {
-            alert("Please select your Gender.");
-            return false;
-        }
-
-
-        
-        if (course === "") {
-            alert("Please select a Course.");
-            return false;
-        }
-
-
-        
-        if (address === "") {
-            alert("Please enter your Address.");
-            return false;
-        }
-
-        if (address.length < 10) {
-            alert("Address must contain at least 10 characters.");
-            return false;
-        }
-
-
-        if (password === "") {
-            alert("Please enter a Password.");
-            return false;
-        }
-
-        if (password.length < 8) {
-            alert("Password must contain at least 8 characters.");
-            return false;
-        }
-
-
-        
-        if (confirmPassword === "") {
-            alert("Please confirm your Password.");
-            return false;
-        }
-
-        if (password !== confirmPassword) {
-            alert("Password and Confirm Password do not match.");
-            return false;
-        }
-
-
-        
-        alert("Registration Successful!");
-
-        return true;
+    if (!namePattern.test(fathername)) {
+        alert("Enter a valid Father's Name");
+        return false;
     }
 
 
     
-    document.getElementById("registrationForm")
-        .addEventListener("submit", function(event) {
+    let emailPattern =
+        /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
-            if (!validateForm()) {
-                event.preventDefault();
-            }
+    if (!emailPattern.test(email)) {
+        alert("Enter a valid Email");
+        return false;
+    }
 
-        });
+
+   
+    let phonePattern = /^[0-9]{10}$/;
+
+    if (!phonePattern.test(phone)) {
+        alert("Phone Number must contain 10 digits");
+        return false;
+    }
+
+
+    
+    if (dob === "") {
+        alert("Please select Date of Birth");
+        return false;
+    }
+
+    let today = new Date();
+    let birthDate = new Date(dob);
+
+    if (birthDate > today) {
+        alert("Date of Birth cannot be in the future");
+        return false;
+    }
+
+
+   
+    let gender = document.querySelector(
+        'input[name="gender"]:checked'
+    );
+
+    if (!gender) {
+        alert("Please select Gender");
+        return false;
+    }
+
+
+    
+    if (course === "") {
+        alert("Please select a Course");
+        return false;
+    }
+
+
+   
+    if (address.length < 10) {
+        alert("Address must contain at least 10 characters");
+        return false;
+    }
+
+
+    
+    if (password.length < 8) {
+        alert("Password must contain at least 8 characters");
+        return false;
+    }
+
+
+    
+    if (password !== confirmPassword) {
+        alert("Passwords do not match");
+        return false;
+    }
+
+
+    alert("Registration Successful!");
+
+    return false;
+}
+
+
+document.getElementById("registrationForm").addEventListener(
+    "submit",
+    function(event) {
+
+        if (!validateForm()) {
+            event.preventDefault();
+        }
+
+    }
+);
 
 </script>
 
